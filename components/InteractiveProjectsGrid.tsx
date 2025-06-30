@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -52,12 +52,30 @@ export default function InteractiveProjectsGrid({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | undefined>(undefined);
+
+  const scrollToProject = useCallback((projectId: string) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    const cardWidth = 320; // w-80 = 320px
+    const gap = 24; // gap-6 = 24px
+    const scrollPosition =
+      projectIndex * (cardWidth + gap) -
+      container.clientWidth / 2 +
+      cardWidth / 2;
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+  }, [projects]);
 
   // Auto-scroll functionality
   useEffect(() => {
     if (isAutoPlaying) {
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = window.setInterval(() => {
         const currentIndex = projects.findIndex(
           (p) => p.id === selectedProject
         );
@@ -76,25 +94,7 @@ export default function InteractiveProjectsGrid({
         clearInterval(intervalRef.current);
       }
     };
-  }, [selectedProject, isAutoPlaying, projects]);
-
-  const scrollToProject = (projectId: string) => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const projectIndex = projects.findIndex((p) => p.id === projectId);
-    const cardWidth = 320; // w-80 = 320px
-    const gap = 24; // gap-6 = 24px
-    const scrollPosition =
-      projectIndex * (cardWidth + gap) -
-      container.clientWidth / 2 +
-      cardWidth / 2;
-
-    container.scrollTo({
-      left: scrollPosition,
-      behavior: "smooth",
-    });
-  };
+  }, [selectedProject, isAutoPlaying, projects, scrollToProject]);
 
   const handleProjectClick = (projectId: string) => {
     setSelectedProject(projectId);
@@ -183,7 +183,7 @@ export default function InteractiveProjectsGrid({
                   <Button
                     className="bg-white text-black hover:bg-gray-200 rounded-full px-6 py-2 text-sm font-medium"
                     onClick={() =>
-                      window.open(displayProject.links?.demo!, "_blank")
+                      window.open(displayProject.links?.demo, "_blank")
                     }
                   >
                     View Live
@@ -195,7 +195,7 @@ export default function InteractiveProjectsGrid({
                     variant="outline"
                     className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white rounded-full px-4 py-2"
                     onClick={() =>
-                      window.open(displayProject.links?.github!, "_blank")
+                      window.open(displayProject.links?.github, "_blank")
                     }
                   >
                     <Github className="h-4 w-4" />

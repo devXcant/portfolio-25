@@ -1,6 +1,7 @@
+// ProjectsGrid.tsx
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -54,6 +55,24 @@ export default function ProjectsGrid({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<number | undefined>(undefined);
 
+  const scrollToProject = useCallback((projectId: string) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    const cardWidth = 320; // w-80 = 320px
+    const gap = 24; // gap-6 = 24px
+    const scrollPosition =
+      projectIndex * (cardWidth + gap) -
+      container.clientWidth / 2 +
+      cardWidth / 2;
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+  }, [projects]);
+
   // Auto-scroll functionality
   useEffect(() => {
     if (isAutoPlaying) {
@@ -76,25 +95,7 @@ export default function ProjectsGrid({
         clearInterval(intervalRef.current);
       }
     };
-  }, [selectedProject, isAutoPlaying, projects]);
-
-  const scrollToProject = (projectId: string) => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const projectIndex = projects.findIndex((p) => p.id === projectId);
-    const cardWidth = 320; // w-80 = 320px
-    const gap = 24; // gap-6 = 24px
-    const scrollPosition =
-      projectIndex * (cardWidth + gap) -
-      container.clientWidth / 2 +
-      cardWidth / 2;
-
-    container.scrollTo({
-      left: scrollPosition,
-      behavior: "smooth",
-    });
-  };
+  }, [selectedProject, isAutoPlaying, projects, scrollToProject]);
 
   const handleProjectClick = (projectId: string) => {
     setSelectedProject(projectId);
@@ -187,7 +188,7 @@ export default function ProjectsGrid({
                     <Button
                       className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-2.5 text-sm font-light tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl"
                       onClick={() =>
-                        window.open(displayProject.links?.demo!, "_blank")
+                        window.open(displayProject.links?.demo, "_blank")
                       }
                     >
                       View Project
@@ -199,7 +200,7 @@ export default function ProjectsGrid({
                       variant="outline"
                       className="border-gray-600 text-gray-300 hover:bg-white/10 hover:text-white hover:border-gray-400 rounded-full px-6 py-2.5 font-light tracking-wide"
                       onClick={() =>
-                        window.open(displayProject.links?.github!, "_blank")
+                        window.open(displayProject.links?.github, "_blank")
                       }
                     >
                       <Github className="h-4 w-4" />
