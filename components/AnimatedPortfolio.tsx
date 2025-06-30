@@ -162,7 +162,7 @@ export default function AnimatedPortfolio() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="text-gray-400 text-center md:text-left">
                 <p className="text-sm">
-                  © 2024 Nikita Khvatov. All rights reserved.
+                  © 2025 Ayobamidele Ogunkuade. All rights reserved.
                 </p>
                 <p className="text-xs mt-1">
                   Built with Next.js & Tailwind CSS

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nikita Khvatov | Full-stack Developer",
-  description: "Full-stack developer with 5+ years experience. Specializing in React, Vue, Golang, and modern web technologies.",
+  title: "Ayobamidele Ogunkuade | Software Developer",
+  description: "Software developer with 5+ years experience. Vast experience in React, Vue, React Native, and modern web technologies.",
 };
 
 export default function RootLayout({

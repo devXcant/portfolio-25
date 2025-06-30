@@ -22,9 +22,9 @@ export default function CustomCursor() {
     const handleMouseLeave = () => setIsHovering(false);
 
     const animate = () => {
-      // Smooth cursor following
-      followerX += (mouseX - followerX) * 0.1;
-      followerY += (mouseY - followerY) * 0.1;
+      // Much faster interpolation for snappier following
+      followerX += (mouseX - followerX) * 0.85;
+      followerY += (mouseY - followerY) * 0.85;
 
       setPosition({ x: mouseX, y: mouseY });
       setFollowerPosition({ x: followerX, y: followerY });
@@ -58,27 +58,30 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Main cursor - small filled circle */}
       <div
-        className={`cursor fixed pointer-events-none z-[9999] transition-all duration-200 ${
-          isHovering ? "scale-150 bg-blue-500" : ""
-        }`}
+        className="fixed pointer-events-none z-[9999] w-3 h-3 bg-white rounded-full mix-blend-difference"
         style={{
           left: `${position.x}px`,
           top: `${position.y}px`,
           transform: "translate(-50%, -50%)",
+          transition: isHovering ? "transform 0.2s ease" : "none",
+          ...(isHovering && { transform: "translate(-50%, -50%) scale(1.5)" }),
         }}
       />
 
-      {/* Cursor follower */}
+      {/* Cursor follower - big unfilled circle */}
       <div
-        className={`cursor-follower fixed pointer-events-none z-[9998] transition-all duration-300 ${
-          isHovering ? "scale-150 border-blue-500" : ""
-        }`}
+        className="fixed pointer-events-none z-[9998] w-12 h-12 border border-white/30 rounded-full"
         style={{
           left: `${followerPosition.x}px`,
           top: `${followerPosition.y}px`,
           transform: "translate(-50%, -50%)",
+          transition: isHovering ? "transform 0.2s ease, border-color 0.2s ease" : "none",
+          ...(isHovering && {
+            transform: "translate(-50%, -50%) scale(1.5)",
+            borderColor: "rgb(59 130 246 / 0.6)"
+          }),
         }}
       />
     </>
