@@ -52,7 +52,7 @@ export default function InteractiveProjectsGrid({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll functionality
   useEffect(() => {

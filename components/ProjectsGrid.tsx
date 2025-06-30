@@ -52,12 +52,12 @@ export default function ProjectsGrid({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<number | undefined>();
+  const intervalRef = useRef<number | undefined>(undefined);
 
   // Auto-scroll functionality
   useEffect(() => {
     if (isAutoPlaying) {
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = window.setInterval(() => {
         const currentIndex = projects.findIndex(
           (p) => p.id === selectedProject
         );

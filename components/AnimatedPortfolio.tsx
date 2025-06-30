@@ -16,6 +16,9 @@ import CustomCursor from "./CustomCursor";
 import Socials from "./socials";
 import CodeEditor from "./CodeEditor";
 import ProjectsGrid from "./ProjectsGrid";
+import AboutMe from "./AboutMe";
+import Works from "./Works";
+import ContactForm from "./ContactForm";
 import { projectsData } from "@/lib/projects-data";
 
 export default function AnimatedPortfolio() {
@@ -145,187 +148,13 @@ export default function AnimatedPortfolio() {
         />
 
         {/* About Section */}
-        <section id="about" className="relative z-10 py-20 lg:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <p className="text-gray-400 text-sm font-medium">
-                ... /About me ...
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="order-2 lg:order-1">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-                  Hello! I'm Nikita, I'm a{" "}
-                  <span className="italic text-blue-400">
-                    full-stack developer
-                  </span>
-                  .<br />
-                  More than{" "}
-                  <span className="italic text-blue-400">5 years</span>{" "}
-                  experience.
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <Card className="bg-white text-black p-6 rounded-3xl hover:bg-gray-100 hover:scale-105 transition-all duration-500 cursor-pointer">
-                    <h3 className="font-bold mb-4">Front-end</h3>
-                    <div className="text-sm space-y-1">
-                      <div>
-                        TypeScript / React / Vue / Vuex / Redux Toolkit / NextJs
-                        /
-                      </div>
-                      <div>
-                        Nuxt / Jest / GraphQL / React Native / Puppeteer /
-                        Enzyme
-                      </div>
-                    </div>
-                  </Card>
-
-                  <Card className="bg-gray-900 border-gray-800 p-6 rounded-3xl hover:bg-gray-800 hover:border-gray-700 transition-all duration-500 cursor-pointer">
-                    <h3 className="font-bold mb-4 text-white">Styles</h3>
-                    <div className="text-sm text-gray-300 space-y-1">
-                      <div>SCSS / SASS / PostCSS /</div>
-                      <div>Ant.d / MUI / Material UI</div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="mt-4 text-gray-400 hover:text-white"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </Card>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <Card className="bg-gray-900 border-gray-800 p-6 rounded-3xl hover:bg-gray-800 hover:border-gray-700 transition-all duration-500 cursor-pointer">
-                    <h3 className="font-bold mb-4 text-white">Back-end</h3>
-                    <div className="text-sm text-gray-300 space-y-1">
-                      <div>
-                        Golang / Gin / GORM / PostgreSQL / MySQL / MongoDB /
-                        gRPC /
-                      </div>
-                      <div>
-                        Redis / Kafka / Node / Nest / TypeORM / Microservices
-                      </div>
-                    </div>
-                  </Card>
-
-                  <Card className="bg-gray-900 border-gray-800 p-6 rounded-3xl hover:bg-gray-800 hover:border-gray-700 transition-all duration-500 cursor-pointer">
-                    <h3 className="font-bold mb-4 text-white">DevOps</h3>
-                    <div className="text-sm text-gray-300 space-y-1">
-                      <div>Nginx / Brotli / Docker /</div>
-                      <div>(CI/CD) / k8s / Bash</div>
-                    </div>
-                  </Card>
-                </div>
-
-                <p className="text-gray-400 italic">
-                  Some of my{" "}
-                  <span className="text-white">favorite technologies</span>,
-                  <br />
-                  <span className="text-white">topics</span>, or{" "}
-                  <span className="text-white">tools</span> that I worked with
-                </p>
-              </div>
-
-              <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-                <div className="w-80 h-96 bg-gray-200 rounded-3xl overflow-hidden hover:scale-105 transition-all duration-500 cursor-pointer">
-                  <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face"
-                    alt="Profile"
-                    className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AboutMe />
 
         {/* Work Experience Section */}
-        <section className="relative z-10 py-20 lg:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-right mb-16">
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-white">
-                Work
-              </h2>
-            </div>
+        <Works />
 
-            <div className="space-y-0">
-              {/* ITHUB */}
-              <div className="grid grid-cols-12 gap-4 items-center py-6 border-b border-gray-800 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group">
-                <div className="col-span-2 text-gray-400 group-hover:text-gray-600">
-                  <div className="font-medium">2022 -</div>
-                  <div className="text-sm">1 year 5 months</div>
-                </div>
-                <div className="col-span-3 font-bold text-xl text-white group-hover:text-black">
-                  ITHUB
-                </div>
-                <div className="col-span-6 text-gray-300 group-hover:text-gray-700">
-                  Frontend developer | React & Vue
-                </div>
-                <div className="col-span-1"></div>
-              </div>
-
-              {/* VK Development Lab - Featured/Active */}
-              <div className="grid grid-cols-12 gap-4 items-center py-6 bg-white text-black cursor-pointer relative">
-                <div className="col-span-2 text-gray-600">
-                  <div className="font-medium">2021 - 2022</div>
-                  <div className="text-sm">8 months</div>
-                </div>
-                <div className="col-span-3 font-bold text-xl text-black">
-                  VK Development Lab
-                </div>
-                <div className="col-span-6 text-gray-700">
-                  Frontend developer | React
-                </div>
-                <div className="col-span-1 flex justify-end">
-                  <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-gray-800" />
-                </div>
-              </div>
-
-              {/* SN Inc. */}
-              <div className="grid grid-cols-12 gap-4 items-center py-6 border-b border-gray-800 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group">
-                <div className="col-span-2 text-gray-400 group-hover:text-gray-600">
-                  <div className="font-medium">2020 - 2021</div>
-                  <div className="text-sm">9 months</div>
-                </div>
-                <div className="col-span-3 font-bold text-xl text-white group-hover:text-black">
-                  SN Inc.
-                </div>
-                <div className="col-span-6 text-gray-300 group-hover:text-gray-700">
-                  Fullstack developer | JavaScript & Python
-                </div>
-                <div className="col-span-1"></div>
-              </div>
-
-              {/* Business Up */}
-              <div className="grid grid-cols-12 gap-4 items-center py-6 hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group">
-                <div className="col-span-2 text-gray-400 group-hover:text-gray-600">
-                  <div className="font-medium">2018 - 2020</div>
-                  <div className="text-sm">1 year 11 months</div>
-                </div>
-                <div className="col-span-3 font-bold text-xl text-white group-hover:text-black">
-                  Business Up
-                </div>
-                <div className="col-span-6 text-gray-300 group-hover:text-gray-700">
-                  Fullstack developer | JavaScript & Python
-                </div>
-                <div className="col-span-1"></div>
-              </div>
-            </div>
-
-            {/* Work Experience Summary */}
-            <div className="text-right mt-16">
-              <div className="text-gray-400">
-                <div className="text-lg">Work experience</div>
-                <div className="text-2xl font-bold italic">
-                  4 years 9 months
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Contact Section */}
+        <ContactForm />
 
         {/* Footer */}
         <footer className="relative z-10 border-t border-gray-800 bg-gray-900/50">

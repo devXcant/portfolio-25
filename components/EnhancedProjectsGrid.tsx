@@ -23,7 +23,7 @@ export default function EnhancedProjectsGrid({
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -189,11 +189,12 @@ export default function EnhancedProjectsGrid({
         <div
           ref={scrollContainerRef}
           className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide scroll-smooth"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            WebkitScrollbar: { display: "none" },
-          }}
+          style={
+            {
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            } as React.CSSProperties
+          }
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
         >
