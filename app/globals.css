@@ -62,6 +62,30 @@
     border-color: hsl(var(--border));
   }
 
+  /* Force font loading */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-clash-display), sans-serif !important;
+  }
+
+  p,
+  span,
+  div,
+  a,
+  button,
+  input,
+  textarea {
+    font-family: var(--font-satoshi), sans-serif !important;
+  }
+
+  .font-space-grotesk {
+    font-family: var(--font-space-grotesk), sans-serif !important;
+  }
+
   html {
     scroll-behavior: smooth;
     cursor: none;
@@ -71,6 +95,7 @@
     background-color: #000000;
     color: #ffffff;
     cursor: none;
+    font-family: var(--font-satoshi), sans-serif;
   }
 
   /* Custom cursor */

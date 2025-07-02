@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, MessageCircle } from "lucide-react";
+import { Github, Linkedin, MessageCircle, Mail } from "lucide-react";
 
 export default function Socials() {
   const socialLinks = [
@@ -21,6 +21,12 @@ export default function Socials() {
       icon: MessageCircle,
       hoverColor: "hover:bg-green-600",
     },
+    {
+      name: "Gmail",
+      href: "mailto:devxcant@gmail.com",
+      icon: Mail,
+      hoverColor: "hover:bg-red-600",
+    },
   ];
 
   return (
@@ -39,7 +45,7 @@ export default function Socials() {
               >
                 <a
                   href={social.href}
-                  target="_blank"
+                  target={social.href.startsWith("mailto:") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
                   className="flex items-center"
                 >
@@ -50,6 +56,10 @@ export default function Socials() {
             );
           })}
         </div>
+        <div className="text-center text-xs mt-4 text-gray-300">
+          @2025 Ayo Bamidele...
+        </div>
+
       </div>
     </section>
   );

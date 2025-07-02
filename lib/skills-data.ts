@@ -10,30 +10,43 @@ export const skillsData: SkillData[] = [
     id: "frontend",
     title: "Front-end",
     skills: [
-      "TypeScript / React / Vue / Vuex / Redux Toolkit / NextJs /",
-      "Nuxt / Jest / GraphQL / React Native / Puppeteer / Enzyme",
+      "React / Next.js / React Native /",
+      "Vue / Nuxt / TypeScript / JavaScript",
     ],
-    link: "https://github.com/devxcant",
+    link: "https://github.com/yourusername", // Replace with your actual GitHub
   },
   {
     id: "styles",
-    title: "Styles",
-    skills: ["SCSS / SASS / PostCSS /", "Ant.d / MUI / Material UI"],
-    link: "https://codepen.io/devxcant",
+    title: "Styling & Animation",
+    skills: [
+      "Tailwind CSS / SCSS / SASS / CSS3 /",
+      "GSAP / Framer Motion / Styled Components",
+    ],
+    link: "https://codepen.io/yourusername", // Replace with your Codepen
   },
   {
     id: "backend",
     title: "Back-end",
     skills: [
-      "Golang / Gin / GORM / PostgreSQL / MySQL / MongoDB / gRPC /",
-      "Redis / Kafka / Node / Nest / TypeORM / Microservices",
+      "Node.js / Express / Hono /",
+      "TypeORM / Django / REST APIs",
     ],
-    link: "https://github.com/devxcant",
+    link: "https://github.com/yourusername",
+  },
+  {
+    id: "testing",
+    title: "Testing",
+    skills: [
+      "Cypress / Jest / Mocha / React Testing Library",
+    ],
+    link: "https://github.com/yourusername",
   },
   {
     id: "devops",
-    title: "DevOps",
-    skills: ["Nginx / Brotli / Docker /", "(CI/CD) / k8s / Bash"],
-    link: "https://github.com/devxcant",
+    title: "DevOps & Tools",
+    skills: [
+      "Docker / Azure / Ngrok / Postman / Git / Caprover / ",
+    ],
+    link: "https://github.com/yourusername",
   },
 ];

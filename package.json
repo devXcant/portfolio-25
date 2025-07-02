@@ -9,6 +9,8 @@
     "lint": "bunx biome lint --write && npx tsc --noEmit"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@formspree/react": "^3.0.0",
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/line-clamp": "^0.4.4",

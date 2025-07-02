@@ -8,6 +8,14 @@ export default {
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      "space-grotesk": ["var(--font-space-grotesk)", "sans-serif"],
+      satoshi: ["var(--font-satoshi)", "sans-serif"],
+      "clash-display": ["var(--font-clash-display)", "sans-serif"],
+      sans: ["var(--font-satoshi)", "sans-serif"],
+      serif: ["var(--font-satoshi)", "serif"],
+      mono: ["var(--font-space-grotesk)", "monospace"],
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",

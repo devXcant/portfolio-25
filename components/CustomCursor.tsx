@@ -77,10 +77,12 @@ export default function CustomCursor() {
           left: `${followerPosition.x}px`,
           top: `${followerPosition.y}px`,
           transform: "translate(-50%, -50%)",
-          transition: isHovering ? "transform 0.2s ease, border-color 0.2s ease" : "none",
+          transition: isHovering
+            ? "transform 0.2s ease, border-color 0.2s ease"
+            : "none",
           ...(isHovering && {
             transform: "translate(-50%, -50%) scale(1.5)",
-            borderColor: "rgb(59 130 246 / 0.6)"
+            borderColor: "rgb(59 130 246 / 0.6)",
           }),
         }}
       />
