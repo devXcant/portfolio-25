@@ -24,7 +24,6 @@ export default function Works({
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Set initial states
       gsap.set(subtitleRef.current, { opacity: 0, y: -20 });
       gsap.set(titleRef.current, { opacity: 0, scale: 0.9, y: 30 });
       gsap.set(summaryRef.current, { opacity: 0, x: 50 });
@@ -32,87 +31,149 @@ export default function Works({
       gsap.set(progressBarRef.current, { scaleX: 0 });
       gsap.set(".timeline-dot", { scale: 0, opacity: 0 });
 
-      // Create pinned animation timeline - simplified approach
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "+=60vh", // Shorter pin duration since animations are faster
-          pin: true,
-          anticipatePin: 1,
-          pinSpacing: false,
-          toggleActions: "play none none none",
-          once: true, // Only trigger once
-        },
-      });
-
-      // Build the pinned animation timeline - FASTER
-      tl.to(subtitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      })
-        .to(
-          titleRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "back.out(1.7)",
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "+=60vh",
+            pin: true,
+            anticipatePin: 1,
+            pinSpacing: false,
+            toggleActions: "play none none none",
+            once: true,
           },
-          "-=0.2"
-        )
-        // Progress bar animation
-        .to(
-          progressBarRef.current,
-          {
-            scaleX: 1,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          "-=0.3"
-        )
-        // Work items staggered animation
-        .to(
-          ".work-item",
-          {
-            opacity: 1,
-            x: 0,
-            rotationY: 0,
-            duration: 0.5,
-            stagger: {
-              amount: 0.4,
-              from: "start",
+        });
+        tl.to(subtitleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+          .to(
+            titleRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
             },
-            ease: "power3.out",
+            "-=0.2"
+          )
+          .to(
+            progressBarRef.current,
+            {
+              scaleX: 1,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            "-=0.3"
+          )
+          .to(
+            ".work-item",
+            {
+              opacity: 1,
+              x: 0,
+              rotationY: 0,
+              duration: 0.5,
+              stagger: { amount: 0.4, from: "start" },
+              ease: "power3.out",
+            },
+            "-=0.4"
+          )
+          .to(
+            ".timeline-dot",
+            {
+              scale: 1,
+              opacity: 0.6,
+              duration: 0.3,
+              stagger: 0.05,
+              ease: "back.out(1.7)",
+            },
+            "-=0.3"
+          )
+          .to(
+            summaryRef.current,
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.2"
+          );
+      });
+      mm.add("(max-width: 767px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true,
           },
-          "-=0.4"
-        )
-        // Timeline dots animation
-        .to(
-          ".timeline-dot",
-          {
-            scale: 1,
-            opacity: 0.6,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: "back.out(1.7)",
-          },
-          "-=0.3"
-        )
-        // Summary animation
-        .to(
-          summaryRef.current,
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-          },
-          "-=0.2"
-        );
+        });
+        tl.to(subtitleRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+          .to(
+            titleRef.current,
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
+            },
+            "-=0.2"
+          )
+          .to(
+            progressBarRef.current,
+            {
+              scaleX: 1,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            "-=0.3"
+          )
+          .to(
+            ".work-item",
+            {
+              opacity: 1,
+              x: 0,
+              rotationY: 0,
+              duration: 0.5,
+              stagger: { amount: 0.4, from: "start" },
+              ease: "power3.out",
+            },
+            "-=0.4"
+          )
+          .to(
+            ".timeline-dot",
+            {
+              scale: 1,
+              opacity: 0.6,
+              duration: 0.3,
+              stagger: 0.05,
+              ease: "back.out(1.7)",
+            },
+            "-=0.3"
+          )
+          .to(
+            summaryRef.current,
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            },
+            "-=0.2"
+          );
+      });
 
       // Continuous progress bar animation tied to scroll
       gsap.to(progressBarRef.current, {

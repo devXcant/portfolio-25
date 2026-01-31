@@ -97,23 +97,27 @@ export default function AnimatedPortfolio() {
         "-=1.8"
       );
 
-    // Code Editor scroll rotation animation - straightens before scrolling continues (SLOWER)
     if (codeEditorRef.current && heroSectionRef.current) {
-      // Set initial rotation to 43 degrees (equivalent to rotate-12)
       gsap.set(codeEditorRef.current, { rotation: 43 });
 
-      gsap.to(codeEditorRef.current, {
-        rotation: 0, // Rotate from 43deg to 0deg (perfectly straight)
-        ease: "power1.inOut", // Gentler easing
-        scrollTrigger: {
-          trigger: heroSectionRef.current,
-          start: "bottom bottom", // Start when hero section bottom hits viewport bottom
-          end: "+=150vh", // Longer rotation duration - 150% viewport height
-          scrub: 3, // Slower scrubbing (was 1.5, now 3)
-          pin: true, // Pin section during rotation - page won't scroll until rotation completes
-          anticipatePin: 1,
-          pinSpacing: false, // Prevents extra spacing after pinning
-        },
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px)", () => {
+        gsap.to(codeEditorRef.current, {
+          rotation: 0,
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "bottom bottom",
+            end: "+=150vh",
+            scrub: 3,
+            pin: true,
+            anticipatePin: 1,
+            pinSpacing: false,
+          },
+        });
+      });
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(codeEditorRef.current, { rotation: 0 });
       });
     }
 
@@ -277,22 +281,22 @@ export default function AnimatedPortfolio() {
           </div>
 
           {/* Main content container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen px-4 sm:px-8 lg:px-16">
-            <div className="flex flex-col justify-center order-1">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen px-4 sm:px-8 lg:px-16 pt-8 lg:pt-0">
+            <div className="flex flex-col justify-center order-1 text-center lg:text-left">
               <h1
                 ref={heroTitleRef}
-                className="font-clash-display text-5xl sm:text-6xl md:text-7xl lg:text-9xl xl:text-[14rem] font-bold leading-[0.85] tracking-tight mb-8"
+                className="font-clash-display text-4xl sm:text-5xl md:text-6xl lg:text-9xl xl:text-[14rem] font-bold leading-[0.9] sm:leading-[0.85] tracking-tight mb-6 lg:mb-8"
               >
-                <span className="text-purple-400">Soft</span>
-                <span className="text-yellow-400">-</span>
-                <span className="text-blue-400">Ware</span>
+                <span className="text-white">Soft</span>
+                <span className="text-white">-</span>
+                <span className="text-white">Ware</span>
                 <br />
-                <span className="text-green-400">Developer</span>
-                <span className="text-orange-400">.</span>
+                <span className="text-white">Developer</span>
+                <span className="text-white">.</span>
                 {/* <span className="text-xs">er.</span> */}
               </h1>
 
-              <div ref={heroDescRef} className="max-w-md mb-8">
+              <div ref={heroDescRef} className="max-w-md mb-8 mx-auto lg:mx-0">
                 <p className="text-gray-300 leading-relaxed font-satoshi text-base sm:text-lg font-medium">
                   <span className="text-gray-200">
                     Building scalable, efficient interfaces{" "}
