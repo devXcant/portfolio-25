@@ -4,6 +4,106 @@ import { ProjectData } from "@/components/ProjectsGrid";
 
 export const projectsData: ProjectData[] = [
   {
+    id: "apeing-poly-predict",
+    type: "project",
+    category: "Blockchain",
+    title: "Apeing Polymarket Prediction",
+    description:
+      "Polymarket prediction platform for crypto and event forecasting. Built with real-time data and decentralized prediction markets.",
+    tags: ["Next.js", "Blockchain", "Polymarket"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-amber-500",
+      via: "via-orange-500",
+      to: "to-red-500",
+    },
+    links: {
+      demo: "https://apeing-poly-predict.vercel.app/",
+      github: "https://github.com/devxcant",
+    },
+  },
+  {
+    id: "apeing-trade",
+    type: "project",
+    category: "Blockchain",
+    title: "Apeing Decentralized Platform",
+    description:
+      "Decentralized trading platform similar to Dexscreener. Real-time token analytics, charts, and trading across multiple DEXs.",
+    tags: ["Next.js", "Blockchain", "DEX", "Web3"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-cyan-500",
+      via: "via-blue-500",
+      to: "to-indigo-500",
+    },
+    links: {
+      demo: "https://trade.apeing.ai/",
+      github: "https://github.com/devxcant",
+    },
+  },
+  {
+    id: "apeing-prize-market",
+    type: "project",
+    category: "Blockchain",
+    title: "Apeing Prize Market",
+    description:
+      "Prize market platform for predictions and rewards. Interactive UI for participating in prize-based prediction markets.",
+    tags: ["Next.js", "Blockchain", "Vercel"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-violet-500",
+      via: "via-purple-500",
+      to: "to-fuchsia-500",
+    },
+    links: {
+      demo: "https://prize-market-staging.vercel.app/",
+      github: "https://github.com/devxcant",
+    },
+  },
+  {
+    id: "auto-doc-gen",
+    type: "project",
+    category: "Developer Tools",
+    title: "@devxcant/auto-doc-gen",
+    description:
+      "Backend package for automatic API documentation generation. Simplifies doc generation for Node.js and Express projects.",
+    tags: ["Node.js", "npm", "Documentation"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-emerald-500",
+      via: "via-teal-500",
+      to: "to-cyan-500",
+    },
+    links: {
+      demo: "https://www.npmjs.com/package/@devxcant/auto-doc-gen",
+      github: "https://github.com/devxcant",
+    },
+  },
+  {
+    id: "gefeafrica",
+    type: "project",
+    category: "E-Commerce",
+    title: "GeFe Africa Thrift Marketplace",
+    description:
+      "Thrift e-commerce marketplace for sustainable fashion. Full-featured marketplace with payments, listings, and clean UI.",
+    tags: ["Next.js", "Node.js", "E-Commerce"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1616627982454-d868f6c1f286?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-amber-500",
+      via: "via-yellow-500",
+      to: "to-lime-500",
+    },
+    links: {
+      demo: "https://www.gefeafrica.com/",
+      github: "https://github.com/devxcant",
+    },
+  },
+  {
     id: "kwalede",
     type: "project",
     category: "Retail",
@@ -120,26 +220,6 @@ export const projectsData: ProjectData[] = [
     },
     links: {
       demo: "https://real-estate-demo.vercel.app",
-      github: "https://github.com/devxcant",
-    },
-  },
-  {
-    id: "gefe",
-    type: "project",
-    category: "Marketplace",
-    title: "Gefe Thrift Marketplace",
-    description:
-      "Online thrift marketplace using Next.js and Stripe for payments. Focused on clean design and ease of use.",
-    tags: ["Next.js", "TailwindCSS", "Stripe"],
-    mockupImage:
-      "https://images.unsplash.com/photo-1616627982454-d868f6c1f286?w=800&h=600&fit=crop",
-    gradient: {
-      from: "from-amber-500",
-      via: "via-yellow-500",
-      to: "to-lime-500",
-    },
-    links: {
-      demo: "https://gefe-marketplace.vercel.app",
       github: "https://github.com/devxcant",
     },
   },

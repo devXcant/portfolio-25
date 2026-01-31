@@ -13,7 +13,7 @@ export const skillsData: SkillData[] = [
       "React / Next.js / React Native /",
       "Vue / Nuxt / TypeScript / JavaScript",
     ],
-    link: "https://github.com/yourusername", // Replace with your actual GitHub
+    link: "https://github.com/devxcant",
   },
   {
     id: "styles",
@@ -22,7 +22,7 @@ export const skillsData: SkillData[] = [
       "Tailwind CSS / SCSS / SASS / CSS3 /",
       "GSAP / Framer Motion / Styled Components",
     ],
-    link: "https://codepen.io/yourusername", // Replace with your Codepen
+    link: "https://github.com/devxcant",
   },
   {
     id: "backend",
@@ -31,7 +31,7 @@ export const skillsData: SkillData[] = [
       "Node.js / Express / Hono /",
       "TypeORM / Django / REST APIs",
     ],
-    link: "https://github.com/yourusername",
+    link: "https://github.com/devxcant",
   },
   {
     id: "testing",
@@ -39,7 +39,7 @@ export const skillsData: SkillData[] = [
     skills: [
       "Cypress / Jest / Mocha / React Testing Library",
     ],
-    link: "https://github.com/yourusername",
+    link: "https://github.com/devxcant",
   },
   {
     id: "devops",
@@ -47,6 +47,14 @@ export const skillsData: SkillData[] = [
     skills: [
       "Docker / Azure / Ngrok / Postman / Git / Caprover / ",
     ],
-    link: "https://github.com/yourusername",
+    link: "https://github.com/devxcant",
+  },
+  {
+    id: "learning",
+    title: "Currently Learning",
+    skills: [
+      "Rust / Perfecting Blockchain Development",
+    ],
+    link: "https://github.com/devxcant",
   },
 ];

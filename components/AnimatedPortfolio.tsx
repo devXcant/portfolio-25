@@ -152,7 +152,7 @@ export default function AnimatedPortfolio() {
                 className="text-lg font-medium text-white"
               >
                 <span className="block text-2xl font-clash-display font-bold uppercase tracking-wider">
-                  Ayo Bamidele
+                  Ayo Bami
                 </span>
               </div>
 
@@ -277,18 +277,18 @@ export default function AnimatedPortfolio() {
           </div>
 
           {/* Main content container */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen px-8 lg:px-16">
-            <div className="flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen px-4 sm:px-8 lg:px-16">
+            <div className="flex flex-col justify-center order-1">
               <h1
                 ref={heroTitleRef}
                 className="font-clash-display text-5xl sm:text-6xl md:text-7xl lg:text-9xl xl:text-[14rem] font-bold leading-[0.85] tracking-tight mb-8"
               >
-                <span className="text-purple-400 lg:text-white">Soft</span>
-                <span className="text-yellow-400 lg:text-white">-</span>
-                <span className="text-blue-400 lg:text-white">Ware</span>
+                <span className="text-purple-400">Soft</span>
+                <span className="text-yellow-400">-</span>
+                <span className="text-blue-400">Ware</span>
                 <br />
-                <span className="text-green-400 lg:text-white">Developer</span>
-                <span className="text-orange-400 lg:text-white">.</span>
+                <span className="text-green-400">Developer</span>
+                <span className="text-orange-400">.</span>
                 {/* <span className="text-xs">er.</span> */}
               </h1>
 
@@ -305,7 +305,7 @@ export default function AnimatedPortfolio() {
             </div>
 
             {/* Code Editor */}
-            <div ref={codeEditorRef} className="hidden lg:block">
+            <div ref={codeEditorRef} className="order-2 flex justify-center lg:justify-end w-full">
               <CodeEditor />
             </div>
           </div>

@@ -13,7 +13,7 @@ interface AboutMeProps {
 }
 
 export default function AboutMe({
-  name = "Ayo Bamidele",
+  name = "Ayo Bami",
   title = "Software Developer",
   experience = "5 years",
   profileImage = "/ghibli.jpg",

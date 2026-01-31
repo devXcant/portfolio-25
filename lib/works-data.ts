@@ -10,6 +10,24 @@ export interface WorkData {
 
 export const worksData: WorkData[] = [
   {
+    id: "GEFE",
+    period: "2025",
+    duration: "Present",
+    company: "GeFe",
+    position: "Fullstack Developer",
+    technologies: "Next.js, Node.js, Supabase",
+    isActive: false,
+  },
+  {
+    id: "APEING",
+    period: "2025",
+    duration: "Present",
+    company: "Apeing",
+    position: "Frontend & Blockchain Developer",
+    technologies: "Next.js, Solidity, Reown",
+    isActive: false,
+  },
+  {
     id: "KWALEDE",
     period: "2025",
     duration: "Freelance",

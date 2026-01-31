@@ -246,14 +246,12 @@ export default function Works({
 
         <div
           ref={worksContainerRef}
-          className="relative space-y-4 sm:space-y-6"
+          className="relative space-y-4 sm:space-y-6 flex flex-col items-center md:items-stretch"
         >
-          {/* Timeline connector - only show on larger screens */}
           <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-800 to-transparent opacity-30 hidden md:block" />
 
-          {worksData.map((work, index) => (
-            <div key={work.id} className="relative">
-              {/* Timeline dot - only show on larger screens */}
+          {worksData.map((work) => (
+            <div key={work.id} className="relative w-full max-w-2xl md:max-w-none md:w-auto mx-auto md:mx-0">
               <div className="timeline-dot absolute -left-1 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full opacity-60 hidden md:block" />
               <WorkItem work={work} />
             </div>

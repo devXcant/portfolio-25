@@ -67,7 +67,7 @@ const clashDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ayobamidele Ogunkuade | Software Developer",
+  title: "Ayo Bami Ogunkuade | Software Developer",
   description:
     "Software developer with 5+ years experience. Vast experience in React, Vue, React Native, and modern web technologies.",
 };

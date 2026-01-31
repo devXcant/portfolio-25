@@ -1,7 +1,7 @@
 export default function CodeEditor() {
   return (
-    <div className="relative hidden lg:block">
-      <div className="relative w-full h-[30rem] transform">
+    <div className="relative w-full max-w-xl mx-auto lg:mx-0">
+      <div className="relative w-full h-[24rem] sm:h-[28rem] lg:h-[30rem] transform">
         <div className="bg-gray-800 rounded-2xl border border-gray-600 p-4 h-full shadow-2xl">
           <div className="bg-black rounded-lg h-full flex flex-col overflow-hidden">
             {/* Header */}
@@ -12,7 +12,7 @@ export default function CodeEditor() {
                 <div className="w-3 h-3 bg-green-500 rounded-full" />
               </div>
               <div className="ml-4 text-xs text-green-500 font-mono">
-                ayobamidele.tsx
+                ayobami.tsx
               </div>
             </div>
 
@@ -21,7 +21,7 @@ export default function CodeEditor() {
               <div className="space-y-2">
                 <div>
                   <span className="text-purple-400">const</span>{" "}
-                  <span className="text-blue-300">ayobamidele</span>{" "}
+                  <span className="text-blue-300">ayobami</span>{" "}
                   <span className="text-white">=</span>{" "}
                   <span className="text-yellow-300">()</span>{" "}
                   <span className="text-purple-400">=&gt;</span>{" "}

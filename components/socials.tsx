@@ -57,7 +57,7 @@ export default function Socials() {
           })}
         </div>
         <div className="text-center text-xs mt-4 text-gray-300">
-          @2025 Ayo Bamidele...
+          @2025 Ayo Bami...
         </div>
 
       </div>

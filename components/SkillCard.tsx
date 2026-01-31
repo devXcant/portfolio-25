@@ -38,10 +38,21 @@ export default function SkillCard({ skill }: SkillCardProps) {
         )}
       </div>
 
-      <div className="text-sm space-y-1 text-gray-300 font-light leading-relaxed">
-        {skill.skills.map((skillLine, index) => (
-          <div key={index}>{skillLine}</div>
-        ))}
+      <div className="text-sm space-y-1 font-light leading-relaxed">
+        {skill.id === "learning" ? (
+          <div className="font-mono text-base">
+            <span className="text-purple-400">learning</span>
+            <span className="text-white">(</span>
+            <span className="text-orange-300">&quot;Rust&quot;</span>
+            <span className="text-white">, </span>
+            <span className="text-orange-300">&quot;Perfecting Blockchain&quot;</span>
+            <span className="text-white">)</span>
+          </div>
+        ) : (
+          skill.skills.map((skillLine, index) => (
+            <div key={index} className="text-gray-300">{skillLine}</div>
+          ))
+        )}
       </div>
     </Card>
   );
