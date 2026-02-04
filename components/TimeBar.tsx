@@ -23,7 +23,7 @@ function getOffsetMinutes(date: Date, timeZone: string): number {
     hour12: false,
   });
   const [h, m] = tzStr.split(":").map(Number);
-  let tzMins = (h ?? 0) * 60 + (m ?? 0);
+  const tzMins = (h ?? 0) * 60 + (m ?? 0);
   let diff = tzMins - utcMins;
   if (diff > 12 * 60) diff -= 24 * 60;
   if (diff < -12 * 60) diff += 24 * 60;
