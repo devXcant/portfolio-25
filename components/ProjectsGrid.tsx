@@ -343,14 +343,6 @@ export default function ProjectsGrid({
         );
 
       // Floating animation for featured section
-      gsap.to(featuredRef.current, {
-        y: -5,
-        duration: 3,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
       // Navigation buttons hover effects
       const navButtons = document.querySelectorAll(".nav-button");
       navButtons.forEach((button) => {
@@ -373,41 +365,17 @@ export default function ProjectsGrid({
         });
       });
 
-      // Project cards hover effects
-      const projectCards = document.querySelectorAll(".project-card");
-      projectCards.forEach((card, index) => {
-        card.addEventListener("mouseenter", () => {
-          gsap.to(card, {
-            y: -10,
-            rotationY: index % 2 === 0 ? 5 : -5,
-            scale: 1.02,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        });
-
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, {
-            y: 0,
-            rotationY: 0,
-            scale: 1,
-            duration: 0.4,
-            ease: "power2.out",
-          });
-        });
-      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Featured project change animation
   useEffect(() => {
     if (featuredRef.current) {
       gsap.fromTo(
         featuredRef.current,
-        { opacity: 0.7, scale: 0.98 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }
+        { opacity: 0.92 },
+        { opacity: 1, duration: 0.4, ease: "power2.out" }
       );
     }
   }, [selectedProject, hoveredProject]);
@@ -487,10 +455,10 @@ export default function ProjectsGrid({
         {displayProject && (
           <div
             ref={featuredRef}
-            className="project-featured text-center mb-16 transition-all duration-700"
+            className="project-featured text-center mb-28 transition-all duration-700"
           >
             <div className="max-w-3xl mx-auto">
-              <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-8 border border-gray-800/50 shadow-2xl">
+              <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-8 border border-gray-800/50 shadow-2xl min-h-[300px] flex flex-col justify-center">
                 <div className="text-xs text-gray-400 mb-3 font-space-grotesk font-medium tracking-wider uppercase">
                   {displayProject.category || displayProject.type}
                 </div>
@@ -619,12 +587,12 @@ export default function ProjectsGrid({
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
                   className={`
-                    project-card flex-shrink-0 w-80 h-96 cursor-pointer transition-all duration-300 ease-out relative overflow-hidden group rounded-xl border
+                    project-card flex-shrink-0 w-80 h-96 cursor-pointer transition-[background-color,border-color,box-shadow] duration-300 ease-out relative overflow-hidden group rounded-xl border will-change-auto
                     ${
                       isSelected
-                        ? "bg-black/40 text-white border-white/30 scale-105 shadow-2xl backdrop-blur-xl"
+                        ? "bg-black/40 text-white border-white/30 shadow-2xl backdrop-blur-xl"
                         : isHovered
-                        ? "bg-black/60 text-white border-gray-600 scale-102 shadow-xl backdrop-blur-xl"
+                        ? "bg-black/60 text-white border-gray-600 shadow-xl backdrop-blur-xl"
                         : "bg-black/30 text-white border-gray-800/50 hover:border-gray-700/50 backdrop-blur-sm"
                     }
                   `}

@@ -15,6 +15,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import CustomCursor from "./CustomCursor";
+import TimeBar from "./TimeBar";
 import Socials from "./socials";
 import CodeEditor from "./CodeEditor";
 import ProjectsGrid from "./ProjectsGrid";
@@ -138,8 +139,8 @@ export default function AnimatedPortfolio() {
   return (
     <>
       <CustomCursor />
+      <TimeBar />
       <div className="min-h-screen bg-black text-white overflow-x-hidden">
-        {/* Background decorative elements */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <div className="absolute top-20 right-20 w-96 h-96 border border-gray-800 rounded-full opacity-10" />
           <div className="absolute bottom-20 left-20 w-80 h-80 border border-gray-800 rounded-full opacity-10" />
@@ -147,8 +148,7 @@ export default function AnimatedPortfolio() {
           <div className="absolute top-1/2 right-1/3 w-32 h-32 border border-gray-800 rounded-full opacity-20" />
         </div>
 
-        {/* Header Navigation */}
-        <header className="fixed top-0 left-0 right-0 z-50 w-full bg-black/80 backdrop-blur-md">
+        <header className="fixed top-10 left-0 right-0 z-50 w-full bg-black/80 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6 md:py-8">
               <div
@@ -261,7 +261,7 @@ export default function AnimatedPortfolio() {
         {/* Hero Section */}
         <section
           ref={heroSectionRef}
-          className="hero-section relative z-10 min-h-screen pt-20"
+          className="hero-section relative z-10 min-h-screen pt-28"
         >
           {/* Corner annotations - positioned below fixed header */}
           <div

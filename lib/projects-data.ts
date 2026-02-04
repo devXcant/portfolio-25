@@ -223,4 +223,24 @@ export const projectsData: ProjectData[] = [
       github: "https://github.com/devxcant",
     },
   },
+  {
+    id: "stabley",
+    type: "project",
+    category: "Fintech",
+    title: "Stabley",
+    description:
+      "Swapping, sending and buying between real money and stablecoins.",
+    tags: ["ACH", "Reown", "1inch aggregators", "Render"],
+    mockupImage:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    gradient: {
+      from: "from-slate-500",
+      via: "via-zinc-500",
+      to: "to-neutral-600",
+    },
+    links: {
+      demo: "https://stabley.onrender.com/",
+      github: "https://github.com/devxcant",
+    },
+  },
 ];
