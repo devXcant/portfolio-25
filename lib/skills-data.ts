@@ -28,7 +28,7 @@ export const skillsData: SkillData[] = [
     id: "backend",
     title: "Back-end",
     skills: [
-      "Node.js / Express / Hono /",
+      "Node.js / Express / Hono / .NET / C# /",
       "TypeORM / Django / REST APIs",
     ],
     link: "https://github.com/devxcant",

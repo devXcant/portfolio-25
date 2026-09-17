@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -136,6 +138,12 @@ export default function ContactForm({
     "idle" | "success" | "error"
   >("idle");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const emptyForm = () => {
+    setFormData({ name: "", email: "", reason: "", message: "" });
+    formRef.current?.reset();
+  };
 
   // Initialize EmailJS
   useEffect(() => {
@@ -164,7 +172,8 @@ export default function ContactForm({
   };
 
   // EmailJS integration
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (
       !formData.name ||
       !formData.email ||
@@ -183,23 +192,62 @@ export default function ContactForm({
       const templateID = "template_sx6xx82"; // Your Template ID
       const publicKey = "wxFnZQS9ZTfkhvL8j"; // Your Public Key
 
+      const reasonLabel =
+        contactReasons.find((r) => r.value === formData.reason)?.label ||
+        "Contact";
+
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        to_email: "devxcant@gmail.com", // Your email
-        reason:
-          contactReasons.find((r) => r.value === formData.reason)?.label ||
-          "Contact",
+        to_email: "devxcant@gmail.com",
+        to_name: "Ayo Bami",
+        name: formData.name,
+        email: formData.email,
+        user_name: formData.name,
+        user_email: formData.email,
+        reply_to: formData.email,
+        reason: reasonLabel,
+        subject: `Portfolio: ${reasonLabel}`,
+        title: `Portfolio: ${reasonLabel}`,
         message: formData.message,
       };
 
-      // Send email using EmailJS
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      try {
+        await emailjs.send(serviceID, templateID, templateParams, publicKey);
+        emptyForm();
+        setSubmitStatus("success");
+        return;
+      } catch {
+        const fallback = await fetch(
+          "https://formsubmit.co/ajax/devxcant@gmail.com",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              _replyto: formData.email,
+              _subject: `Portfolio: ${reasonLabel}`,
+              _captcha: "false",
+              _template: "table",
+              reason: reasonLabel,
+              message: formData.message,
+            }),
+          }
+        );
 
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", reason: "", message: "" });
-    } catch (error) {
-      console.error("Failed to send email:", error);
+        if (!fallback.ok) {
+          throw new Error("fallback failed");
+        }
+
+        emptyForm();
+        setSubmitStatus("success");
+      }
+    } catch {
+      emptyForm();
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -276,10 +324,20 @@ export default function ContactForm({
           </div>
         )}
 
-        {/* Contact Form */}
         <div className="bg-black/40 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-3xl">
           <div className="p-6 sm:p-8 md:p-12">
-            <div className="space-y-8">
+            <form ref={formRef} className="space-y-8" onSubmit={handleSubmit}>
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_subject"
+                value={`Portfolio: ${selectedReason?.label || "Contact"}`}
+              />
+              <input
+                type="hidden"
+                name="reason"
+                value={selectedReason?.label || ""}
+              />
               {/* Name & Email */}
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Name */}
@@ -294,6 +352,8 @@ export default function ContactForm({
                       value={formData.name}
                       onChange={handleInputChange}
                       type="text"
+                      required
+                      autoComplete="name"
                       placeholder=""
                       className="w-full bg-black/20 border border-gray-700/50 rounded-xl pl-12 pr-4 py-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-white/20 focus:border-white/30 outline-none transition"
                     />
@@ -312,6 +372,8 @@ export default function ContactForm({
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      required
+                      autoComplete="email"
                       placeholder=""
                       className="w-full bg-black/20 border border-gray-700/50 rounded-xl pl-12 pr-4 py-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-white/20 focus:border-white/30 outline-none transition"
                     />
@@ -373,16 +435,16 @@ export default function ContactForm({
                     rows={6}
                     value={formData.message}
                     onChange={handleInputChange}
+                    required
                     placeholder="Share your idea, timeline, or any detail..."
                     className="w-full bg-black/20 border border-gray-700/50 rounded-xl pl-12 pr-4 py-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-white/20 focus:border-white/30 outline-none transition resize-none"
                   />
                 </div>
               </div>
 
-              {/* Submit Button */}
               <div className="flex justify-end">
                 <button
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isSubmitting || !isFormValid}
                   className="bg-white text-black hover:bg-gray-200 disabled:bg-gray-600 disabled:text-gray-400 px-8 py-3 rounded-xl font-light tracking-wide transition-all flex items-center gap-2 disabled:cursor-not-allowed"
                 >
@@ -399,7 +461,7 @@ export default function ContactForm({
                   )}
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

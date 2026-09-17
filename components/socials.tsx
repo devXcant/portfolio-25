@@ -17,7 +17,7 @@ export default function Socials() {
     },
     {
       name: "WhatsApp",
-      href: "https://wa.me/2348161797075",
+      href: "https://wa.me/447344061262",
       icon: MessageCircle,
       hoverColor: "hover:bg-green-600",
     },

@@ -15,7 +15,7 @@ interface AboutMeProps {
 export default function AboutMe({
   name = "Ayo Bami",
   title = "Software Developer",
-  experience = "5 years",
+  experience = "6+ years",
   profileImage = "/ghibli.jpg",
   subtitle = "... /About me ...",
 }: AboutMeProps) {

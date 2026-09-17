@@ -69,7 +69,7 @@ const clashDisplay = localFont({
 export const metadata: Metadata = {
   title: "Ayo Bami Ogunkuade | Software Developer",
   description:
-    "Software developer with 5+ years experience. Vast experience in React, Vue, React Native, and modern web technologies.",
+    "Software developer with 6+ years experience. Vast experience in React, Vue, React Native, and modern web technologies.",
 };
 
 export default function RootLayout({

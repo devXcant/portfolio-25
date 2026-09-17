@@ -75,6 +75,6 @@ export const worksData: WorkData[] = [
 ];
 
 export const workSummary = {
-  totalExperience: "5 years ",
+  totalExperience: "6+ years ",
   title: "Work experience",
 };

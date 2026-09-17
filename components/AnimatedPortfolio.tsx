@@ -4,24 +4,16 @@ import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import {
-  ArrowRight,
-  ArrowLeft,
-  ExternalLink,
-  Mail,
-  Menu,
-  Github,
-  Linkedin,
-} from "lucide-react";
+import { Menu } from "lucide-react";
 import CustomCursor from "./CustomCursor";
 import TimeBar from "./TimeBar";
 import Socials from "./socials";
 import CodeEditor from "./CodeEditor";
-import ProjectsGrid from "./ProjectsGrid";
 import AboutMe from "./AboutMe";
 import Works from "./Works";
 import ContactForm from "./ContactForm";
+import MobileAppsScroll from "./MobileAppsScroll";
+import FeaturedLaptopScroll from "./FeaturedLaptopScroll";
 import { projectsData } from "@/lib/projects-data";
 import Link from "next/link";
 
@@ -38,94 +30,88 @@ export default function AnimatedPortfolio() {
   const heroSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    console.log("Portfolio animations loaded");
-
-    // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
-    // Set initial states - elements start with opacity 0
-    gsap.set(
-      [
-        headerNameRef.current,
-        heroTitleRef.current,
-        heroDescRef.current,
-        leftAnnotationsRef.current,
-        rightAnnotationsRef.current,
-      ],
-      {
-        opacity: 0,
-        y: 20, // Add slight y movement for smoother effect
-      }
-    );
-
-    // MUCH SMOOTHER opacity animations
-    const tl = gsap.timeline({ delay: 0.3 });
-
-    tl.to(headerNameRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 2.5,
-      ease: "power3.out",
-    })
-      .to(
-        heroTitleRef.current,
+    const ctx = gsap.context(() => {
+      gsap.set(
+        [
+          headerNameRef.current,
+          heroTitleRef.current,
+          heroDescRef.current,
+          leftAnnotationsRef.current,
+          rightAnnotationsRef.current,
+        ],
         {
-          opacity: 1,
-          y: 0,
-          duration: 2.8,
-          ease: "power3.out",
-        },
-        "-=2.2"
-      )
-      .to(
-        heroDescRef.current,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2.5,
-          ease: "power3.out",
-        },
-        "-=2.0"
-      )
-      .to(
-        [leftAnnotationsRef.current, rightAnnotationsRef.current],
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2.2,
-          ease: "power3.out",
-        },
-        "-=1.8"
+          opacity: 0,
+          y: 20,
+        }
       );
 
-    if (codeEditorRef.current && heroSectionRef.current) {
-      gsap.set(codeEditorRef.current, { rotation: 43 });
+      const tl = gsap.timeline({ delay: 0.3 });
 
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        gsap.to(codeEditorRef.current, {
-          rotation: 0,
-          ease: "power1.inOut",
-          scrollTrigger: {
-            trigger: heroSectionRef.current,
-            start: "bottom bottom",
-            end: "+=150vh",
-            scrub: 3,
-            pin: true,
-            anticipatePin: 1,
-            pinSpacing: false,
+      tl.to(headerNameRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 2.5,
+        ease: "power3.out",
+      })
+        .to(
+          heroTitleRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 2.8,
+            ease: "power3.out",
           },
-        });
-      });
-      mm.add("(max-width: 1023px)", () => {
-        gsap.set(codeEditorRef.current, { rotation: 0 });
-      });
-    }
+          "-=2.2"
+        )
+        .to(
+          heroDescRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 2.5,
+            ease: "power3.out",
+          },
+          "-=2.0"
+        )
+        .to(
+          [leftAnnotationsRef.current, rightAnnotationsRef.current],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 2.2,
+            ease: "power3.out",
+          },
+          "-=1.8"
+        );
 
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+      if (codeEditorRef.current && heroSectionRef.current) {
+        gsap.set(codeEditorRef.current, { rotation: 43 });
+
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 1024px)", () => {
+          gsap.to(codeEditorRef.current, {
+            rotation: 0,
+            ease: "power1.inOut",
+            scrollTrigger: {
+              trigger: heroSectionRef.current,
+              start: "bottom bottom",
+              end: "+=150vh",
+              scrub: 3,
+              pin: true,
+              anticipatePin: 1,
+              pinSpacing: false,
+            },
+          });
+        });
+        mm.add("(max-width: 1023px)", () => {
+          gsap.set(codeEditorRef.current, { rotation: 0 });
+        });
+      }
+    });
+
+    return () => ctx.revert();
   }, []);
 
   const toggleMobileMenu = () => {
@@ -155,12 +141,12 @@ export default function AnimatedPortfolio() {
                 ref={headerNameRef}
                 className="text-lg font-medium text-white"
               >
-                <span className="block text-2xl font-clash-display font-bold uppercase tracking-wider">
+                <span className="block text-2xl font-clash-display font-bold uppercase tracking-wider whitespace-nowrap">
                   Ayo Bami
                 </span>
               </div>
 
-              <nav className="hidden md:flex items-center space-x-8">
+              <nav className="hidden lg:flex items-center space-x-5 xl:space-x-8">
                 <a
                   href="#about"
                   className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-space-grotesk font-medium uppercase tracking-wide"
@@ -188,22 +174,22 @@ export default function AnimatedPortfolio() {
               </nav>
 
               <div className="flex items-center space-x-4">
-                <div className="hidden md:flex items-center space-x-2">
+                <div className="hidden xl:flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-gray-400 font-space-grotesk font-medium tracking-wide">
+                  <span className="text-xs text-gray-400 font-space-grotesk font-medium tracking-wide whitespace-nowrap">
                     Available for work
                   </span>
                 </div>
                 <Link
                   href="#contacts"
-                  className="hidden md:flex bg-white text-black hover:bg-gray-200 border-0 px-4 py-1.5 rounded-full font-space-grotesk font-medium transition-all duration-200 text-sm tracking-wide"
+                  className="hidden md:flex bg-white text-black hover:bg-gray-200 border-0 px-4 py-1.5 rounded-full font-space-grotesk font-medium transition-all duration-200 text-sm tracking-wide whitespace-nowrap shrink-0"
                 >
                   Let's Talk
                 </Link>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="md:hidden text-gray-300"
+                  className="lg:hidden text-gray-300"
                   onClick={toggleMobileMenu}
                 >
                   <Menu className="h-5 w-5" />
@@ -214,7 +200,7 @@ export default function AnimatedPortfolio() {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-t border-gray-800/50">
+            <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-t border-gray-800/50">
               <nav className="px-4 py-6 space-y-4">
                 <a
                   href="#about"
@@ -315,17 +301,12 @@ export default function AnimatedPortfolio() {
           </div>
         </section>
 
-        {/* About Section */}
         <AboutMe />
 
-        {/* Projects Section */}
-        <ProjectsGrid
-          projects={projectsData}
-          title="Featured Projects"
-          subtitle="... /Projects ..."
-        />
+        <MobileAppsScroll />
 
-        {/* Work Experience Section */}
+        <FeaturedLaptopScroll projects={projectsData} />
+
         <Works />
 
         {/* Contact Section */}
