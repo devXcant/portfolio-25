@@ -147,7 +147,7 @@ export default function FeaturedLaptopScroll({ projects }: { projects: ProjectDa
               className={`mx-auto max-w-xl transition-all duration-700 ${
                 index === activeIndex
                   ? "opacity-100 translate-y-0"
-                  : "opacity-50 translate-y-3 lg:opacity-25"
+                  : "opacity-100 translate-y-0 lg:opacity-25 lg:translate-y-3"
               }`}
             >
               <p className="mb-3 font-space-grotesk text-xs uppercase tracking-widest text-gray-500">

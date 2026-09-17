@@ -61,6 +61,46 @@ function AppCopy({ item, index }: { item: MobileApp; index: number }) {
   );
 }
 
+function MobileAppPreview({ item, index }: { item: MobileApp; index: number }) {
+  const [shot, setShot] = useState(0);
+
+  return (
+    <div className="flex flex-col px-4 py-10 sm:px-8 lg:hidden">
+      <div className="mb-5 flex flex-col items-center gap-3">
+        <PhoneMockup>
+          {item.images.map((src, shotIndex) => (
+            <ScreenShot key={src} src={src} active={shotIndex === shot} />
+          ))}
+        </PhoneMockup>
+        <div className="flex gap-2">
+          {item.images.map((thumb, shotIndex) => (
+            <button
+              key={thumb}
+              type="button"
+              aria-label={`Show ${item.name} screenshot ${shotIndex + 1}`}
+              onClick={() => setShot(shotIndex)}
+              className={`overflow-hidden rounded-[8px] transition-all ${
+                shotIndex === shot
+                  ? "ring-2 ring-white ring-offset-2 ring-offset-black"
+                  : "opacity-50"
+              }`}
+            >
+              <img
+                src={thumb}
+                alt=""
+                className="h-24 w-[46px] object-cover object-top sm:h-28 sm:w-[54px]"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="mx-auto max-w-xl">
+        <AppCopy item={item} index={index} />
+      </div>
+    </div>
+  );
+}
+
 export default function MobileAppsScroll() {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
@@ -220,26 +260,7 @@ export default function MobileAppsScroll() {
             key={item.id}
             className={`mobile-app-${appIndex} relative lg:min-h-[400vh]`}
           >
-            <div className="flex flex-col px-4 py-10 sm:px-8 lg:hidden">
-              <div className="mb-5 flex flex-col items-center gap-3">
-                <PhoneMockup>
-                  <ScreenShot src={item.images[0]} active />
-                </PhoneMockup>
-                <div className="flex gap-2">
-                  {item.images.map((thumb) => (
-                    <img
-                      key={thumb}
-                      src={thumb}
-                      alt=""
-                      className="h-24 w-[46px] rounded-[8px] object-cover object-top sm:h-28 sm:w-[54px]"
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="mx-auto max-w-xl">
-                <AppCopy item={item} index={appIndex} />
-              </div>
-            </div>
+            <MobileAppPreview item={item} index={appIndex} />
           </div>
         ))}
       </div>

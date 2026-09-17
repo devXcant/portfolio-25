@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 const MY_TIMEZONE = "Europe/London";
 const MY_LOCATION = "Goodmayes, England, United Kingdom";
@@ -70,7 +70,7 @@ interface VisitorLocation {
   timezone: string;
 }
 
-export default function TimeBar() {
+export default function TimeBar({ menu }: { menu?: ReactNode }) {
   const myTime = useCurrentTime(MY_TIMEZONE);
   const [visitorLocation, setVisitorLocation] = useState<VisitorLocation | null>(
     null
@@ -126,16 +126,19 @@ export default function TimeBar() {
       : null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-10 bg-black/90 backdrop-blur-sm border-b border-gray-800/50 flex items-center overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 z-[60] h-10 bg-black/90 backdrop-blur-sm border-b border-gray-800/50 flex items-center">
       <div className="max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center gap-2 text-[10px] sm:text-xs font-space-grotesk font-medium tracking-wide text-gray-400">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-[10px] sm:text-xs font-space-grotesk font-medium tracking-wide text-gray-400">
           <div className="flex items-center gap-1.5 min-w-0">
             <span className="text-gray-500 uppercase shrink-0">My time</span>
             <span className="text-white tabular-nums shrink-0">{myTime || "—"}</span>
             <span className="hidden md:inline truncate">{MY_LOCATION}</span>
           </div>
-          <div className="hidden sm:block shrink-0 text-gray-500">
-            {timeDiff ?? "—"}
+          <div className="flex items-center justify-center">
+            <div className="lg:hidden">{menu}</div>
+            <div className="hidden lg:block shrink-0 text-gray-500">
+              {timeDiff ?? "—"}
+            </div>
           </div>
           <div className="flex items-center gap-1.5 min-w-0 justify-end">
             <span className="text-gray-500 uppercase shrink-0">Your time</span>

@@ -41,6 +41,20 @@ export default function AboutMe({
       // Skill cards initial state
       gsap.set(".skill-card", { opacity: 0, y: 30, scale: 0.9 });
 
+      const mm = gsap.matchMedia();
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(
+          [
+            subtitleRef.current,
+            titleRef.current,
+            descriptionRef.current,
+            profileImageRef.current,
+          ],
+          { opacity: 1, x: 0, y: 0, scale: 1 }
+        );
+        gsap.set(".skill-card", { opacity: 1, y: 0, scale: 1 });
+      });
+
       // Simplified About Me animations - no pinning, just smooth scroll trigger
       const tl = gsap.timeline({
         scrollTrigger: {

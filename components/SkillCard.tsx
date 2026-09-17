@@ -27,7 +27,7 @@ export default function SkillCard({ skill }: SkillCardProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-400 hover:text-white"
+            className="opacity-70 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 text-gray-400 hover:text-white"
             onClick={(e) => {
               e.stopPropagation();
               window.open(skill.link!, "_blank");
@@ -38,9 +38,9 @@ export default function SkillCard({ skill }: SkillCardProps) {
         )}
       </div>
 
-      <div className="text-sm space-y-1 font-light leading-relaxed">
+      <div className="text-sm space-y-1 font-light leading-relaxed break-words">
         {skill.id === "learning" ? (
-          <div className="font-mono text-base">
+          <div className="font-mono text-sm sm:text-base whitespace-normal">
             <span className="text-purple-400">learning</span>
             <span className="text-white">(</span>
             <span className="text-orange-300">&quot;Rust&quot;</span>

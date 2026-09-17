@@ -282,6 +282,22 @@
   }
 }
 
+@keyframes menu-from-center {
+  from {
+    transform: scaleX(0.08);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.menu-from-center {
+  transform-origin: top center;
+  animation: menu-from-center 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Character reveal animation */
 .char {
   display: inline-block;

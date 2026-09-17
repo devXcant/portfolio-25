@@ -1,7 +1,7 @@
 export default function CodeEditor() {
   return (
     <div className="relative w-full max-w-xl mx-auto lg:mx-0">
-      <div className="relative w-full h-[24rem] sm:h-[28rem] lg:h-[30rem] transform">
+      <div className="relative w-full min-h-[28rem] h-auto lg:h-[30rem] lg:min-h-0 transform">
         <div className="bg-gray-800 rounded-2xl border border-gray-600 p-4 h-full shadow-2xl">
           <div className="bg-black rounded-lg h-full flex flex-col overflow-hidden">
             {/* Header */}
@@ -17,7 +17,7 @@ export default function CodeEditor() {
             </div>
 
             {/* Editor Content */}
-            <div className="flex-1 p-4 text-xs font-mono text-gray-200 overflow-auto">
+            <div className="flex-1 p-4 text-xs font-mono text-gray-200 overflow-visible lg:overflow-auto">
               <div className="space-y-2">
                 <div>
                   <span className="text-purple-400">const</span>{" "}
