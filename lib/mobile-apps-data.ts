@@ -17,7 +17,7 @@ export const mobileApps: MobileApp[] = [
     kicker: "TMM",
     title: "TMM, on device.",
     description:
-      "Bills is TMM — smart money management for modern UK life. Cream canvas, Open Banking, and Firebase, captured from the running iOS app on version2-ui.",
+      "TMM: smart money management for modern UK life. Debt resolver, money manager, and more.",
     points: [
       "Welcome, planning, and insights from the live iOS build",
       "Open Banking plus on-device records",
@@ -37,7 +37,7 @@ export const mobileApps: MobileApp[] = [
     kicker: "Matching",
     title: "Match the vibe.",
     description:
-      "VIBECODER is VibeCodes — connect with developers who match your vibe. These frames are the live iOS app: landing, jobs, and matches.",
+      "VIBECODER: A platform to connect with developers who match your vibe, recruiters, companies, landing, jobs, and matches.",
     points: [
       "Landing with Get Started into the product",
       "Job listings with apply and filters",
@@ -57,7 +57,7 @@ export const mobileApps: MobileApp[] = [
     kicker: "Entertainment",
     title: "MovieHub, in your pocket.",
     description:
-      "Streamz is MovieHub — a React Native movie app on TMDB. The phone shows the live iOS screens: home, search, and a title.",
+      "MovieHub is a striclty streaming movies platform using TMDB APi. ",
     points: [
       "Latest movies grid from TMDB",
       "Search across the catalog",

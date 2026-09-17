@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { mobileApps } from "@/lib/mobile-apps-data";
+import { mobileApps, type MobileApp } from "@/lib/mobile-apps-data";
 import PhoneMockup from "./PhoneMockup";
 
 function ScreenShot({ src, active }: { src: string; active: boolean }) {
@@ -18,9 +18,53 @@ function ScreenShot({ src, active }: { src: string; active: boolean }) {
   );
 }
 
+function AppCopy({ item, index }: { item: MobileApp; index: number }) {
+  return (
+    <>
+      <p className="mb-3 font-space-grotesk text-xs uppercase tracking-widest text-gray-500">
+        {item.kicker} · {String(index + 1).padStart(2, "0")} /{" "}
+        {String(mobileApps.length).padStart(2, "0")}
+      </p>
+      <h2 className="mb-6 font-clash-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+        {item.title}
+      </h2>
+      <p className="mb-8 font-satoshi text-base font-medium leading-relaxed text-gray-300 sm:text-lg">
+        {item.description}
+      </p>
+      <ul className="mb-8 space-y-3">
+        {item.points.map((point) => (
+          <li key={point} className="flex items-start gap-3 text-sm text-gray-400">
+            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-white" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mb-6 flex flex-wrap gap-2">
+        {item.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full border border-gray-700/50 bg-white/5 px-3 py-1.5 font-space-grotesk text-xs font-medium tracking-wide text-gray-300"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+      <a
+        href={item.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex rounded-full border border-gray-700 px-5 py-2 font-space-grotesk text-sm font-medium text-white transition-colors hover:border-white"
+      >
+        GitHub
+      </a>
+    </>
+  );
+}
+
 export default function MobileAppsScroll() {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
+  const copyPinRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
   const [activeApp, setActiveApp] = useState(0);
   const [activeShot, setActiveShot] = useState(0);
@@ -52,12 +96,10 @@ export default function MobileAppsScroll() {
         );
         if (!(beatEl instanceof HTMLElement)) return;
 
-        const copy = beatEl.querySelector(".mobile-copy");
-
         ScrollTrigger.create({
           trigger: beatEl,
           start: "top top",
-          end: "bottom bottom",
+          end: "bottom top",
           onUpdate: (self) => {
             setActiveApp(appIndex);
             setActiveShot(Math.min(2, Math.floor(self.progress * 3 + 0.001)));
@@ -74,21 +116,6 @@ export default function MobileAppsScroll() {
           onEnterBack: () => setActiveApp(appIndex),
         });
 
-        if (copy instanceof HTMLElement) {
-          gsap.set(copy, { opacity: 1, y: 0 });
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: beatEl,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 2,
-              },
-            })
-            .to(copy, { opacity: 1, y: 0, ease: "none", duration: 0.8 })
-            .to(copy, { opacity: 0, y: -40, ease: "none", duration: 0.2 });
-        }
-
         const inline = beatEl.querySelector(".phone-scale-inline");
         if (inline) {
           gsap.set(inline, { scale: 0.72, transformOrigin: "50% 50%" });
@@ -97,7 +124,7 @@ export default function MobileAppsScroll() {
               scrollTrigger: {
                 trigger: beatEl,
                 start: "top top",
-                end: "bottom bottom",
+                end: "bottom top",
                 scrub: 2,
               },
             })
@@ -114,6 +141,14 @@ export default function MobileAppsScroll() {
           start: "top top",
           end: "bottom bottom",
           pin: pinRef.current,
+          pinSpacing: false,
+          anticipatePin: 1,
+        });
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          pin: copyPinRef.current,
           pinSpacing: false,
           anticipatePin: 1,
         });
@@ -176,14 +211,34 @@ export default function MobileAppsScroll() {
         </div>
       </div>
 
+      <div
+        ref={copyPinRef}
+        className="absolute right-0 top-0 z-10 hidden h-screen w-1/2 items-center px-12 lg:flex"
+      >
+        <div className="relative mx-auto w-full max-w-xl">
+          {mobileApps.map((item, appIndex) => (
+            <div
+              key={item.id}
+              className={`transition-all duration-700 ease-out ${
+                appIndex === activeApp
+                  ? "relative opacity-100 translate-y-0"
+                  : "pointer-events-none absolute inset-x-0 top-0 opacity-0 translate-y-8"
+              }`}
+            >
+              <AppCopy item={item} index={appIndex} />
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="relative lg:ml-[50%] lg:w-1/2">
         {mobileApps.map((item, appIndex) => (
           <div
             key={item.id}
             className={`mobile-app-${appIndex} relative min-h-[400vh]`}
           >
-            <div className="mobile-pin-col flex min-h-screen flex-col justify-center px-4 py-16 sm:px-8 lg:sticky lg:top-0 lg:h-screen lg:justify-center lg:px-12 lg:py-0">
-              <div className="mb-10 flex justify-center lg:hidden">
+            <div className="sticky top-0 flex min-h-screen flex-col justify-center px-4 py-16 sm:px-8 lg:hidden">
+              <div className="mb-10 flex justify-center">
                 <div className="phone-scale-inline will-change-transform">
                   <PhoneMockup>
                     {item.images.map((src, shotIndex) => (
@@ -198,47 +253,8 @@ export default function MobileAppsScroll() {
                   </PhoneMockup>
                 </div>
               </div>
-
-              <div className="mobile-copy mx-auto max-w-xl">
-                <p className="mb-3 font-space-grotesk text-xs uppercase tracking-widest text-gray-500">
-                  {item.kicker} · {String(appIndex + 1).padStart(2, "0")} /{" "}
-                  {String(mobileApps.length).padStart(2, "0")}
-                </p>
-                <h2 className="mb-6 font-clash-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-                  {item.title}
-                </h2>
-                <p className="mb-8 font-satoshi text-base font-medium leading-relaxed text-gray-300 sm:text-lg">
-                  {item.description}
-                </p>
-                <ul className="mb-8 space-y-3">
-                  {item.points.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-start gap-3 text-sm text-gray-400"
-                    >
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-white" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-gray-700/50 bg-white/5 px-3 py-1.5 font-space-grotesk text-xs font-medium tracking-wide text-gray-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={item.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex rounded-full border border-gray-700 px-5 py-2 font-space-grotesk text-sm font-medium text-white transition-colors hover:border-white"
-                >
-                  GitHub
-                </a>
+              <div className="mx-auto max-w-xl">
+                <AppCopy item={item} index={appIndex} />
               </div>
             </div>
           </div>
