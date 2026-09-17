@@ -135,9 +135,9 @@ export default function FeaturedLaptopScroll({ projects }: { projects: ProjectDa
         {projects.map((project, index) => (
           <div
             key={project.id}
-            className={`laptop-beat-${index} flex min-h-[100vh] flex-col justify-center px-4 py-16 sm:px-8 lg:px-12 lg:py-0`}
+            className={`laptop-beat-${index} flex flex-col px-4 py-10 sm:px-8 lg:min-h-[100vh] lg:justify-center lg:px-12 lg:py-0`}
           >
-            <div className="mb-10 flex justify-center lg:hidden">
+            <div className="mb-5 flex justify-center lg:mb-10 lg:hidden">
               <MacBookMockup>
                 <LaptopScreen project={project} />
               </MacBookMockup>

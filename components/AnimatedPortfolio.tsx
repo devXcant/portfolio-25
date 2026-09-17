@@ -165,12 +165,12 @@ export default function AnimatedPortfolio() {
                 >
                   Experience
                 </a>
-                <a
+                {/* <a
                   href="#contacts"
                   className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-space-grotesk font-medium uppercase tracking-wide"
                 >
                   Contacts
-                </a>
+                </a> */}
               </nav>
 
               <div className="flex items-center space-x-4">
@@ -247,7 +247,7 @@ export default function AnimatedPortfolio() {
         {/* Hero Section */}
         <section
           ref={heroSectionRef}
-          className="hero-section relative z-10 min-h-screen pt-28"
+          className="hero-section relative z-10 pt-24 lg:min-h-screen lg:pt-28"
         >
           {/* Corner annotations - positioned below fixed header */}
           <div
@@ -267,7 +267,7 @@ export default function AnimatedPortfolio() {
           </div>
 
           {/* Main content container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen px-4 sm:px-8 lg:px-16 pt-8 lg:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center px-4 sm:px-8 lg:px-16 pt-6 pb-10 lg:min-h-screen lg:pt-0 lg:pb-0">
             <div className="flex flex-col justify-center order-1 text-center lg:text-left">
               <h1
                 ref={heroTitleRef}

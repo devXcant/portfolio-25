@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export default function PhoneMockup({ children }: { children: ReactNode }) {
   return (
-    <div className="relative mx-auto w-[280px] sm:w-[300px] drop-shadow-[0_32px_60px_rgba(0,0,0,0.55)]">
+    <div className="relative mx-auto w-[220px] sm:w-[250px] lg:w-[280px] drop-shadow-[0_32px_60px_rgba(0,0,0,0.55)]">
       <div
         className="absolute overflow-hidden bg-black"
         style={{

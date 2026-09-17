@@ -90,52 +90,35 @@ export default function MobileAppsScroll() {
         return 0.72 + t * 0.36;
       };
 
-      mobileApps.forEach((_, appIndex) => {
-        const beatEl = sectionRef.current?.querySelector(
-          `.mobile-app-${appIndex}`
-        );
-        if (!(beatEl instanceof HTMLElement)) return;
-
-        ScrollTrigger.create({
-          trigger: beatEl,
-          start: "top top",
-          end: "bottom top",
-          onUpdate: (self) => {
-            setActiveApp(appIndex);
-            setActiveShot(Math.min(2, Math.floor(self.progress * 3 + 0.001)));
-            if (pinPhone) {
-              gsap.to(pinPhone, {
-                scale: scaleFromProgress(self.progress),
-                duration: 1.25,
-                ease: "power3.out",
-                overwrite: "auto",
-              });
-            }
-          },
-          onEnter: () => setActiveApp(appIndex),
-          onEnterBack: () => setActiveApp(appIndex),
-        });
-
-        const inline = beatEl.querySelector(".phone-scale-inline");
-        if (inline) {
-          gsap.set(inline, { scale: 0.72, transformOrigin: "50% 50%" });
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: beatEl,
-                start: "top top",
-                end: "bottom top",
-                scrub: 2,
-              },
-            })
-            .to(inline, { scale: 1.08, ease: "none", duration: 0.2 })
-            .to(inline, { scale: 1.08, ease: "none", duration: 0.6 })
-            .to(inline, { scale: 0.72, ease: "none", duration: 0.2 });
-        }
-      });
-
       const mm = gsap.matchMedia();
       mm.add("(min-width: 1024px)", () => {
+        mobileApps.forEach((_, appIndex) => {
+          const beatEl = sectionRef.current?.querySelector(
+            `.mobile-app-${appIndex}`
+          );
+          if (!(beatEl instanceof HTMLElement)) return;
+
+          ScrollTrigger.create({
+            trigger: beatEl,
+            start: "top top",
+            end: "bottom top",
+            onUpdate: (self) => {
+              setActiveApp(appIndex);
+              setActiveShot(Math.min(2, Math.floor(self.progress * 3 + 0.001)));
+              if (pinPhone) {
+                gsap.to(pinPhone, {
+                  scale: scaleFromProgress(self.progress),
+                  duration: 1.25,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                });
+              }
+            },
+            onEnter: () => setActiveApp(appIndex),
+            onEnterBack: () => setActiveApp(appIndex),
+          });
+        });
+
         ScrollTrigger.create({
           trigger: sectionRef.current,
           start: "top top",
@@ -235,22 +218,22 @@ export default function MobileAppsScroll() {
         {mobileApps.map((item, appIndex) => (
           <div
             key={item.id}
-            className={`mobile-app-${appIndex} relative min-h-[400vh]`}
+            className={`mobile-app-${appIndex} relative lg:min-h-[400vh]`}
           >
-            <div className="sticky top-0 flex min-h-screen flex-col justify-center px-4 py-16 sm:px-8 lg:hidden">
-              <div className="mb-10 flex justify-center">
-                <div className="phone-scale-inline will-change-transform">
-                  <PhoneMockup>
-                    {item.images.map((src, shotIndex) => (
-                      <ScreenShot
-                        key={src}
-                        src={src}
-                        active={
-                          appIndex === activeApp && shotIndex === activeShot
-                        }
-                      />
-                    ))}
-                  </PhoneMockup>
+            <div className="flex flex-col px-4 py-10 sm:px-8 lg:hidden">
+              <div className="mb-5 flex flex-col items-center gap-3">
+                <PhoneMockup>
+                  <ScreenShot src={item.images[0]} active />
+                </PhoneMockup>
+                <div className="flex gap-2">
+                  {item.images.map((thumb) => (
+                    <img
+                      key={thumb}
+                      src={thumb}
+                      alt=""
+                      className="h-24 w-[46px] rounded-[8px] object-cover object-top sm:h-28 sm:w-[54px]"
+                    />
+                  ))}
                 </div>
               </div>
               <div className="mx-auto max-w-xl">

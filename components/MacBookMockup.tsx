@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export default function MacBookMockup({ children }: { children: ReactNode }) {
   return (
-    <div className="relative mx-auto w-full max-w-[820px] drop-shadow-[0_40px_70px_rgba(0,0,0,0.5)]">
+    <div className="relative mx-auto w-full max-w-[520px] lg:max-w-[820px] drop-shadow-[0_40px_70px_rgba(0,0,0,0.5)]">
       <div
         className="absolute overflow-hidden bg-black"
         style={{

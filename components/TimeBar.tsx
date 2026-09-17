@@ -126,23 +126,23 @@ export default function TimeBar() {
       : null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] h-10 bg-black/90 backdrop-blur-sm border-b border-gray-800/50 flex items-center">
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative flex justify-between items-center text-xs font-space-grotesk font-medium tracking-wide text-gray-400">
-          <div className="flex items-center gap-2">
-            <span className="text-gray-500 uppercase">My time</span>
-            <span className="text-white tabular-nums">{myTime || "—"}</span>
-            <span>{MY_LOCATION}</span>
+    <div className="fixed top-0 left-0 right-0 z-[60] h-10 bg-black/90 backdrop-blur-sm border-b border-gray-800/50 flex items-center overflow-hidden">
+      <div className="max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center gap-2 text-[10px] sm:text-xs font-space-grotesk font-medium tracking-wide text-gray-400">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="text-gray-500 uppercase shrink-0">My time</span>
+            <span className="text-white tabular-nums shrink-0">{myTime || "—"}</span>
+            <span className="hidden md:inline truncate">{MY_LOCATION}</span>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 text-gray-500">
+          <div className="hidden sm:block shrink-0 text-gray-500">
             {timeDiff ?? "—"}
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-gray-500 uppercase">Your time</span>
-            <span className="text-white tabular-nums">
+          <div className="flex items-center gap-1.5 min-w-0 justify-end">
+            <span className="text-gray-500 uppercase shrink-0">Your time</span>
+            <span className="text-white tabular-nums shrink-0">
               {visitorTime || "—"}
             </span>
-            <span>
+            <span className="hidden md:inline truncate">
               {visitorPlace || visitorLocation?.timezone || "—"}
             </span>
           </div>
